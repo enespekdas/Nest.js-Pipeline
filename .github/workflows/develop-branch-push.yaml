@@ -33,4 +33,5 @@ jobs:
         run: ./argocd app list
       - name: file list
         run: ls -A
-            
+      - name: pwd
+        run: pwd      
