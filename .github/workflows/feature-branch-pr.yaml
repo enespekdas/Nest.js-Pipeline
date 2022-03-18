@@ -44,3 +44,19 @@ jobs:
       run: yarn install
     - name: E2E Test Being Done
       run: yarn test:e2e
+  Test-Email-Send:
+    runs-on: ubuntu-latest
+    needs: k8s-prod
+    name: Send mail prod
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          server_address: smtp-relay.sendinblue.com
+          server_port: 587
+          username: ${{secrets.EMAIL}}
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: Test Steps Ok
+          to: ${{secrets.TO_EMAIL}}
+          from: ${{secrets.EMAIL}}
+          html_body: "<html><head></head><body><p>Deployed,</p>Test Adimlari Ok Kanksss</p></body></html>"
