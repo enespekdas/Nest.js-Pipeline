@@ -27,7 +27,7 @@ imagePullPolicyTest: Always
 
 ingressTest:
   name: nest-js
-  host: test.20.126.204.70.nip.io
+  host: .20.126.204.70.nip.io
   prefix: /
   svcName: nest-js
   svcPort: 80
