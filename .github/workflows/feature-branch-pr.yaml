@@ -25,3 +25,13 @@ jobs:
       run: yarn install
     - name: Format Checking Steps Are Running
       run: yarn format:check
+  Unit-Test:
+    needs: Format-Check
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+    - name: Unit Test Being Done
+      run: yarn test:cov
