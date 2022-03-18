@@ -1,0 +1,62 @@
+  
+name: DevelopBranch-PullRequest-WorkFlow
+
+on:
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Lint-Rules:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+    - name: Lint Kontrol Ediliyor
+      run: yarn lint
+  Format-Check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+    - name: Format Checking Steps Are Running
+      run: yarn format:check
+  Unit-Test:
+    #needs: [Lint-Rules, Format-Check]
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+    - name: Unit Test Being Done
+      run: yarn test:cov
+  E2E-Test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+    - name: E2E Test Being Done
+      run: yarn test:e2e
+  Test-Email-Send:
+    needs: [E2E-Test,Unit-Test,Lint-Rules, Format-Check]
+    runs-on: ubuntu-latest
+    name: Send mail prod
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          server_address: smtp-relay.sendinblue.com
+          server_port: 587
+          username: rpaistanbul@gmail.com
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: Test Steps Ok
+          to: enes.pekdas@gmail.com
+          from: rpaistanbul@gmail.com
+          html_body: "<html><head></head><body><p>Deployed,</p>Develop Adimlari Ok Kanksss</p></body></html>"

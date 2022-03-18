@@ -1,0 +1,40 @@
+name: MainBranch-Push-WorkFlow
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  Docker-Login:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: Docker login
+      run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}} 
+    - name: image build
+      run: docker image build -t ${{secrets.DOCKERHUB_USERNAME}}/nest-js-demo:latest .
+    - name: image list
+      run: docker images
+    - name: docker push
+      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/nest-js-demo:latest  
+  deployWithArgoCD:
+    needs: [Docker-Login]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Install Argo CD cli
+        run: |
+          curl -sSL -o ./argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x ./argocd
+      - name: Argo CD Login
+        run: ./argocd login ${{ secrets.ARGOCD_URL }} --username ${{ secrets.ARGOCD_USER }} --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
+      - name: Argo CD App List
+        run: ./argocd app list
+      - name: Argocd Create Project
+        run: ./argocd app create nest-js --repo https://github.com/enespekdas/Nest.js-Pipeline --path helmChart --dest-server https://kubernetes.default.svc --dest-namespace prod
+      - name: Argo CD App List
+        run: ./argocd app list     
+      - name: Argo CD Sync
+        run: ./argocd app sync nest-js
