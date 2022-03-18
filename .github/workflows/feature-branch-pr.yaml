@@ -16,3 +16,12 @@ jobs:
       run: yarn install
     - name: Lint Kontrol Ediliyor
       run: yarn lint
+  Format-Check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+    - name: Format Checking Steps Are Running
+      run: yarn format:check
