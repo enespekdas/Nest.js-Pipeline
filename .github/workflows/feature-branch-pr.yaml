@@ -36,7 +36,6 @@ jobs:
     - name: Unit Test Being Done
       run: yarn test:cov
   E2E-Test:
-    needs: [Lint-Rules, Format-Check]
     runs-on: ubuntu-latest
     steps:
     - name: chekout repository
@@ -45,4 +44,3 @@ jobs:
       run: yarn install
     - name: E2E Test Being Done
       run: yarn test:e2e
-      
