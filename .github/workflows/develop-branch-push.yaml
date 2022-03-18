@@ -31,4 +31,6 @@ jobs:
         run: ./argocd login ${{ secrets.ARGOCD_URL }} --username ${{ secrets.ARGOCD_USER }} --password ${{ secrets.ARGOCD_PASSWORD }} --insecure
       - name: Argo CD App List
         run: ./argocd app list
+      - name: file list
+        run: ls -A
             
