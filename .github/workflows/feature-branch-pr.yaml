@@ -45,6 +45,7 @@ jobs:
     - name: E2E Test Being Done
       run: yarn test:e2e
   Test-Email-Send:
+    needs: [E2E-Test,Unit-Test,Lint-Rules, Format-Check]
     runs-on: ubuntu-latest
     name: Send mail prod
     steps:
