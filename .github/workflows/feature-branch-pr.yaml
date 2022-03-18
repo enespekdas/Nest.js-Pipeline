@@ -1,0 +1,19 @@
+  
+name: FeatureBranch-PullRequest-WorkFlow
+
+on:
+
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  Lint-Rules:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: Lint Kontrol Ediliyor
+      run: yarn lint
+      if: failure()
+
+ 
