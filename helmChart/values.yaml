@@ -1,0 +1,32 @@
+
+deployTest:
+  name: nest-js
+  replicas: 1
+  strategyType: RollingUpdate
+  maxUnavailable: 1
+  maxSurge: 1
+  imageName: enespekdas/nest-js-demo
+  imageTag: latest
+  containerPort: 3000
+  app: test
+
+serviceTest:
+  name: nest-js
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+  app: test
+  appName: nest-js
+
+resourcesTest:
+  limCpu: 1
+  memory: 512Mi
+imagePullPolicyTest: Always 
+
+ingressTest:
+  name: nest-js
+  host: test.20.126.204.70.nip.io
+  prefix: /
+  svcName: nest-js
+  svcPort: 80
+  app: test
