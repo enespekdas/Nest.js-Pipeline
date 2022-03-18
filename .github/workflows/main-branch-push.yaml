@@ -33,7 +33,7 @@ jobs:
       - name: Argo CD App List
         run: ./argocd app list
       - name: Argocd Create Project
-        run: ./argocd app create nest-js-prod --repo https://github.com/enespekdas/Nest.js-Pipeline --path helmChart --dest-server https://kubernetes.default.svc --dest-namespace prod --targetRevision main
+        run: ./argocd app create nest-js-prod --repo https://github.com/enespekdas/Nest.js-Pipeline --path helmChart --dest-server https://kubernetes.default.svc --dest-namespace prod 
       - name: Argo CD App List
         run: ./argocd app list     
       - name: Argo CD Sync
