@@ -18,6 +18,7 @@ jobs:
     - name: docker push
       run: docker push ${{secrets.DOCKERHUB_USERNAME}}/nest-js-demo:latest  
   deployWithArgoCD:
+    needs: [Docker-Login]
     runs-on: ubuntu-latest
     permissions:
       contents: read
