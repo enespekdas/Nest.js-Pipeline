@@ -37,4 +37,4 @@ jobs:
       - name: Argo CD App List
         run: ./argocd app list     
       - name: Argo CD Sync
-        run: ./argocd app sync nest-js
+        run: ./argocd app sync nest-js-prod
