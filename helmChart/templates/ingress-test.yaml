@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{.Values.ingressTest.name }}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  namespace: {{ .Values.ingressTest.app }}
+spec:
+  rules:
+  - host: {{ .Values.ingressTest.host}} 
+    http:
+      paths:
+      - path: {{ .Values.ingressTest.prefix}}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.ingressTest.svcName}}
+            port:
+              number: {{ .Values.ingressTest.svcPort}}

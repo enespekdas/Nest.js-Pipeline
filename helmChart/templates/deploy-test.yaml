@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployTest.name }}
+  labels:
+    app: {{ .Values.deployTest.name }}
+  namespace:  {{ .Values.deployTest.app }}
+spec:
+  replicas: {{ .Values.deployTest.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployTest.name }}
+  strategy:
+    type: {{ .Values.deployTest.strategyType }}
+    rollingUpdate:
+      maxUnavailable: {{ .Values.deployTest.maxUnavailable }}
+      maxSurge: {{ .Values.deployTest.maxSurge }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployTest.name }}
+    spec:
+      containers:
+      - name: {{ .Values.deployTest.name }}
+        image: {{ .Values.deployTest.imageName }}:{{ .Values.deployTest.imageTag }}
+        ports:
+        - containerPort: {{ .Values.deployTest.containerPort }}
+        imagePullPolicy: {{ .Values.imagePullPolicyTest }}
+        resources:
+          limits:
+            cpu: {{ .Values.resourcesTest.limCpu }}
+            memory: {{ .Values.resourcesTest.memory }}
+
+
+    
