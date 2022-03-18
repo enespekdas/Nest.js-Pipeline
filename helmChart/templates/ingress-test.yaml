@@ -7,7 +7,7 @@ metadata:
   namespace: {{ .Values.appTest}}
 spec:
   rules:
-  - host: {{ .Values.ingressTest.host}} 
+  - host: {{ .Values.appTest}}{{ .Values.ingressTest.host}} 
     http:
       paths:
       - path: {{ .Values.ingressTest.prefix}}
