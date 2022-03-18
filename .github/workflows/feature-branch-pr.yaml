@@ -53,9 +53,9 @@ jobs:
         with:
           server_address: smtp-relay.sendinblue.com
           server_port: 587
-          username: ${{secrets.EMAIL}}
+          username: rpaistanbul@gmail.com
           password: ${{secrets.EMAIL_PASSWORD}}
           subject: Test Steps Ok
-          to: ${{secrets.TO_EMAIL}}
-          from: ${{secrets.EMAIL}}
+          to: enes.pekdas@gmail.com
+          from: rpaistanbul@gmail.com
           html_body: "<html><head></head><body><p>Deployed,</p>Test Adimlari Ok Kanksss</p></body></html>"
