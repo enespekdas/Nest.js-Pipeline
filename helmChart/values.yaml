@@ -1,3 +1,5 @@
+appProd: prod
+appTest: test
 
 deployTest:
   name: nest-js
@@ -8,7 +10,7 @@ deployTest:
   imageName: enespekdas/nest-js-demo
   imageTag: latest
   containerPort: 3000
-  app: test
+  
 
 serviceTest:
   name: nest-js
@@ -25,8 +27,9 @@ imagePullPolicyTest: Always
 
 ingressTest:
   name: nest-js
-  host: test.20.126.204.70.nip.io
+  host: .20.126.204.70.nip.io
   prefix: /
   svcName: nest-js
   svcPort: 80
   app: test
+

@@ -4,10 +4,10 @@ metadata:
   name: {{.Values.ingressTest.name }}
   annotations:
     kubernetes.io/ingress.class: nginx
-  namespace: {{ .Values.appTest}}
+  namespace: {{ .Values.appProd}}
 spec:
   rules:
-  - host: {{ .Values.appTest}}{{ .Values.ingressTest.host}} 
+  - host: {{ .Values.appProd}}{{ .Values.ingressTest.host}} 
     http:
       paths:
       - path: {{ .Values.ingressTest.prefix}}
