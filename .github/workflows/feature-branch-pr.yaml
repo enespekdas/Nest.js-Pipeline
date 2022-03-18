@@ -12,5 +12,7 @@ jobs:
     steps:
     - name: chekout repository
       uses: actions/checkout@v2
+    - name: yarn install
+        run: yarn install
     - name: Lint Kontrol Ediliyor
       run: yarn lint
