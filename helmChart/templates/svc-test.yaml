@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.serviceTest.name }}
+  namespace: {{ .Values.serviceTest.app }}
+spec:
+  type: {{ .Values.serviceTest.type }}
+  selector:
+    app: {{ .Values.serviceTest.appName }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.serviceTest.port }}
+      targetPort: {{ .Values.serviceTest.targetPort }}
