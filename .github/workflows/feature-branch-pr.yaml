@@ -26,7 +26,7 @@ jobs:
     - name: Format Checking Steps Are Running
       run: yarn format:check
   Unit-Test:
-    needs: Format-Check
+    needs: [Lint-Rules, Format-Check]
     runs-on: ubuntu-latest
     steps:
     - name: chekout repository
