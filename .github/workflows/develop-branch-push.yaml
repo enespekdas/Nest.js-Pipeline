@@ -1,0 +1,14 @@
+name: FeatureBranch-PullRequest-WorkFlow
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  Docker-Login:
+    runs-on: ubuntu-latest
+    steps:
+    - name: chekout repository
+      uses: actions/checkout@v2
+    - name: Docker login
+      run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}} 
+    
