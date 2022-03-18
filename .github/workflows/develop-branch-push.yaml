@@ -1,4 +1,4 @@
-name: FeatureBranch-PullRequest-WorkFlow
+name: DevelopBranch-Push-WorkFlow
 on:
   push:
     branches: [ develop ]
@@ -33,7 +33,7 @@ jobs:
       - name: Argo CD App List
         run: ./argocd app list
       - name: Argocd Create Project
-        run: ./argocd app create nest-js --repo https://github.com/enespekdas/Nest.js-Pipeline --path helmChart --dest-server https://kubernetes.default.svc --dest-namespace test
+        run: ./argocd app create nest-js-test --repo https://github.com/enespekdas/Nest.js-Pipeline --path helmChart --dest-server https://kubernetes.default.svc --dest-namespace test
       - name: Argo CD App List
         run: ./argocd app list     
       - name: Argo CD Sync
